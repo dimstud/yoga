@@ -1,6 +1,6 @@
 // Подключене обработчика событий на всю страницу
 window.addEventListener('DOMContentLoaded', function() {
-    'use strict';
+    
     // Подключаем все менюшки
     let tab = document.querySelectorAll('.info-header-tab'),
     // Подключаем родителя менюшек
@@ -45,10 +45,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
-            seconds = Math.floor((t/1000) % 60),
-            minutes = Math.floor((t/1000/60) % 60),
-            hours = Math.floor((t/(1000*60*60)));
-            // hours = Math.floor((t/1000/60/60) % 24);
+            seconds = Math.floor( (t/1000) % 60 ),
+            minutes = Math.floor( (t/1000/60) % 60 ),
+            hours = Math.floor( (t/(1000*60*60)) );
+            // hours = Math.floor( (t/1000/60/60) % 24 );
             // days = Math.floor( (t/(1000*60*60*24)) );
 
             return {
@@ -89,4 +89,24 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 
     setClock('timer', deadline);
+
+    //Modal 
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+
+        more.addEventListener('click', function() {
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            // Чтобы страница не прокручивалась
+            document.body.style.overflow = 'hidden';
+        });
+
+        close.addEventListener('click', function() {
+            overlay.style.display = 'none';
+            more.classList.remove('more-splash');
+            // Чтобы страница не прокручивалась
+            document.body.style.overflow = '';
+        });
 });
